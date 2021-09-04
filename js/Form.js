@@ -5,6 +5,7 @@ class Form {
     this.button = createButton('Play');
     this.greeting = createElement('h2');
     this.title = createElement('h2');
+    this.reset=createButton("RESET")
   }
   hide(){
     this.greeting.hide();
@@ -16,9 +17,10 @@ class Form {
   display(){
     this.title.html("Car Racing Game");
     this.title.position(displayWidth/2 - 50, 0);
-
+    this.reset.attribute("onClick","window.location.reload();")
     this.input.position(displayWidth/2 - 40 , displayHeight/2 - 80);
     this.button.position(displayWidth/2 + 30, displayHeight/2);
+    this.reset.position(width-100,100)
 2
     this.button.mousePressed(()=>{
       this.input.hide();
@@ -31,6 +33,10 @@ class Form {
       this.greeting.html("Hello " + player.name)
       this.greeting.position(displayWidth/2 - 70, displayHeight/4);
     });
-
+    this.reset.mousePressed(()=>{
+      database.ref("/").update({
+     gameState:0,playerCount:0,players:null
+      })
+    })
   }
 }
